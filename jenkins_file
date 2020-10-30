@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        steps('Maven build') {
+        stage('Maven build') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker_cred', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')])
                     {
