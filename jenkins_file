@@ -1,0 +1,13 @@
+pipeline {
+    agent any
+    stages {
+        steps('Maven build') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker_cred', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')])
+                    {
+                        sh 'mvn deploy -Dusername=${USERNAME} -Dpassword=${PASSWORD}'
+                    }
+            }
+        }
+    }
+}
